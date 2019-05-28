@@ -1,0 +1,6 @@
+mortgage-calculator
+
+<input type="text" [(ngModel)]="price" />
+<button (click)="calculate()">Räkna</button>
+
+<p>Pris: {{ (mortgage$ | async).mortgage.price }}</p>
