@@ -6,10 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MortgageCalculatorComponent } from './containers/mortgage-calculator/mortgage-calculator.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './store/reducers';
-import { mortageReducer } from './store/reducers/mortgage.reducer'
+import { ROOT_REDUCER, META_REDUCERS } from './store/app.state';
 
 @NgModule({
   declarations: [
@@ -20,7 +18,7 @@ import { mortageReducer } from './store/reducers/mortgage.reducer'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    StoreModule.forRoot({ mortgage: mortageReducer }), 
+    StoreModule.forRoot(ROOT_REDUCER, { metaReducers: META_REDUCERS }), 
     StoreDevtoolsModule.instrument({ maxAge: 25 })
   ],
   providers: [],

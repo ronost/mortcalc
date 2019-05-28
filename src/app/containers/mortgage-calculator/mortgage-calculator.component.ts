@@ -3,7 +3,8 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Simulate } from '../../store/actions/mortgage.actions';
 import { Mortgage } from '../../models/mortgage.model'
-import { AppState } from 'src/app/app.state';
+import { ApplicationState } from 'src/app/store/app.state';
+import { MortgageState } from 'src/app/store/reducers/mortgage/mortgage.reducer';
 
 
 @Component({
@@ -14,9 +15,9 @@ import { AppState } from 'src/app/app.state';
 
 export class MortgageCalculatorComponent {
     price: number;
-    mortgage$: Observable<Mortgage>;
+    mortgage$: Observable<MortgageState>;
 
-    constructor(private store: Store<AppState>) {
+    constructor(private store: Store<ApplicationState>) {
         this.mortgage$ = store.pipe(select(state => state.mortgage));
     }
  

@@ -9,9 +9,7 @@ export enum ActionTypes {
 export class Simulate implements Action {
     readonly type = ActionTypes.Simulate;
 
-    constructor(public payload: Mortgage) {
-        console.log("Simulate action, payload: ", payload);
-    }
+    constructor(public payload: Mortgage) { }
 }
 
 export class Reset implements Action {
