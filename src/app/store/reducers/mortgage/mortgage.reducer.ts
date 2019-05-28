@@ -1,4 +1,4 @@
-import * as MortgageActions from '../../actions/mortgage.actions';
+import * as MortgageActions from '../../actions/mortgage/mortgage.actions';
 import { Mortgage } from 'src/app/models/mortgage.model';
 
 export interface MortgageState  {
