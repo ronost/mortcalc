@@ -3,10 +3,15 @@ import { storeFreeze } from 'ngrx-store-freeze';
 
 import { environment } from '../../environments/environment';
 import { mortgageReducer, MortgageState } from './reducers/mortgage/mortgage.reducer';
+import { interestRateReducer, InterestRateState } from './reducers/interestrates/interestrates.reducer';
 
 export interface ApplicationState {
     readonly mortgage: MortgageState;
+    readonly interestRates: InterestRateState;
 }
 
-export const ROOT_REDUCER: ActionReducerMap<ApplicationState> = { mortgage: mortgageReducer };
+export const ROOT_REDUCER: ActionReducerMap<ApplicationState> = { 
+    mortgage: mortgageReducer,
+    interestRates: interestRateReducer
+};
 export const META_REDUCERS = !environment.production ? [storeFreeze] : [];

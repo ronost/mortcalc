@@ -4,3 +4,5 @@ mortgage-calculator
 <button (click)="calculate()">Räkna</button>
 
 <p>Pris: {{ (mortgage$ | async).mortgage.price }}</p>
+
+<pre>{{ interestRates$ | async | json }}</pre>

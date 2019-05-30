@@ -15,14 +15,14 @@ export const initialState: MortgageState = {
  
 export function mortgageReducer(state: MortgageState = initialState, action: MortgageActions.Union) {
   switch (action.type) {
-    case MortgageActions.ActionTypes.Simulate:
+    case MortgageActions.ActionTypes.SIMULATE:
       console.log("inside reducer");
       console.log("action.payload: ", action.payload);
       return {...state,
         mortgage: action.payload
       };
  
-    case MortgageActions.ActionTypes.Reset:
+    case MortgageActions.ActionTypes.RESET:
     default:
       return {...state};
     }

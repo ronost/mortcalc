@@ -2,20 +2,20 @@ import { Action } from '@ngrx/store';
 import { Mortgage } from 'src/app/models/mortgage.model';
  
 export enum ActionTypes {
-    Simulate = '[Mortgage calculator] Simulate',
-    Reset = '[Mortgage calculate] Reset'
+    SIMULATE = '[Mortgage calculator] Simulate',
+    RESET = '[Mortgage calculate] Reset'
 }
 
-export class Simulate implements Action {
-    readonly type = ActionTypes.Simulate;
+export class SimulateAction implements Action {
+    readonly type = ActionTypes.SIMULATE;
 
     constructor(public payload: Mortgage) { }
 }
 
-export class Reset implements Action {
-    readonly type = ActionTypes.Reset;
+export class ResetAction implements Action {
+    readonly type = ActionTypes.RESET;
 
     constructor(public payload: Mortgage) { }
 }
 
-export type Union = Simulate | Reset;
+export type Union = SimulateAction | ResetAction;

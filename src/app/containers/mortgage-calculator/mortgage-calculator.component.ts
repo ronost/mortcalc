@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Simulate } from '../../store/actions/mortgage/mortgage.actions';
+import { SimulateAction } from '../../store/actions/mortgage/mortgage.actions';
 import { Mortgage } from '../../models/mortgage.model'
 import { ApplicationState } from 'src/app/store/app.state';
 import { MortgageState } from 'src/app/store/reducers/mortgage/mortgage.reducer';
 
+import { LoadInterestRatesAction } from 'src/app/store/actions/interestrate/interestrate.actions';
+import { InterestRateState } from 'src/app/store/reducers/interestrates/interestrates.reducer';
 
 @Component({
   selector: 'mortgage-calculator',
@@ -16,13 +18,18 @@ import { MortgageState } from 'src/app/store/reducers/mortgage/mortgage.reducer'
 export class MortgageCalculatorComponent {
     price: number;
     mortgage$: Observable<MortgageState>;
+    interestRates$: Observable<InterestRateState>;
 
     constructor(private store: Store<ApplicationState>) {
         this.mortgage$ = store.pipe(select(state => state.mortgage));
+        this.interestRates$ = store.pipe(select(state => state.interestRates));
+    }
+
+    ngOnInit() {
+        this.store.dispatch(new LoadInterestRatesAction());
     }
  
     calculate() {
-        console.log("calculate()");
-        this.store.dispatch(new Simulate(<Mortgage> { price: this.price } ));
+        this.store.dispatch(new SimulateAction(<Mortgage> { price: this.price } ));
     }
 }
