@@ -1,4 +1,4 @@
-import * as InterestRateActions from '../../actions/interestrate/interestrate.actions';
+import * as InterestRateActions from '../actions/interestrate.actions';
 import { InterestRate } from 'src/app/models/interestrate.model';
 
 export interface InterestRateState  {
@@ -12,8 +12,6 @@ export const initialState: InterestRateState = {
 export function interestRateReducer(state: InterestRateState = initialState, action: InterestRateActions.Union) {
     switch (action.type) {
         case InterestRateActions.ActionTypes.LOAD_INTEREST_RATES_SUCCESS:
-            console.log("inside reducer SUCCESS");
-            console.log("action.payload: ", action.payload);
             return {...state,
                 interestrates: action.payload,
                 loaded: true

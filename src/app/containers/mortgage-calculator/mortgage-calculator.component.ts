@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { SimulateAction } from '../../store/actions/mortgage/mortgage.actions';
+import { SimulateAction } from '../../store/actions/mortgage.actions';
 import { Mortgage } from '../../models/mortgage.model'
 import { ApplicationState } from 'src/app/store/app.state';
-import { MortgageState } from 'src/app/store/reducers/mortgage/mortgage.reducer';
+import { MortgageState } from 'src/app/store/reducers/mortgage.reducer';
 
-import { LoadInterestRatesAction } from 'src/app/store/actions/interestrate/interestrate.actions';
-import { InterestRateState } from 'src/app/store/reducers/interestrates/interestrates.reducer';
+import { LoadInterestRatesAction } from 'src/app/store/actions/interestrate.actions';
+import { InterestRateState } from 'src/app/store/reducers/interestrates.reducer';
 
 @Component({
   selector: 'mortgage-calculator',

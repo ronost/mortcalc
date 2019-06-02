@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { RestApiService } from 'src/app/services/restapi.service';
-import * as InterestRateActions from '../../actions/interestrate/interestrate.actions';
+import * as InterestRateActions from '../actions/interestrate.actions';
  
 @Injectable()
 export class InterestRatesEffects {

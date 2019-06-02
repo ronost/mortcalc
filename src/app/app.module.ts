@@ -10,7 +10,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { ROOT_REDUCER, META_REDUCERS } from './store/app.state';
 import { EffectsModule } from '@ngrx/effects';
-import { InterestRatesEffects } from './store/effects/interestrate/interestrate.effects';
+import { InterestRatesEffects } from './store/effects/interestrate.effects';
 
 @NgModule({
   declarations: [
