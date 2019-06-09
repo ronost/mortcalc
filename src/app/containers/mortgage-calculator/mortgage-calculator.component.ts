@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { SimulateAction } from '../../store/actions/mortgage.actions';
-import { Mortgage } from '../../models/mortgage.model'
+import { UpdatePriceAction, UpdateDownPaymentAction } from '../../store/actions/mortgage.actions';
+import { Amount } from '../../models/mortgage.model'
 import { ApplicationState } from 'src/app/store/app.state';
 import { MortgageState } from 'src/app/store/reducers/mortgage.reducer';
 
@@ -17,6 +17,7 @@ import { InterestRateState } from 'src/app/store/reducers/interestrates.reducer'
 
 export class MortgageCalculatorComponent {
     price: number;
+    downPayment: number;
     mortgage$: Observable<MortgageState>;
     interestRates$: Observable<InterestRateState>;
 
@@ -30,6 +31,7 @@ export class MortgageCalculatorComponent {
     }
  
     calculate() {
-        this.store.dispatch(new SimulateAction(<Mortgage> { price: this.price } ));
+        this.store.dispatch(new UpdatePriceAction(<Amount> { value: this.price, currency: "SEK" } ));
+        this.store.dispatch(new UpdateDownPaymentAction(<Amount> { value: this.downPayment, currency: "SEK" } ));
     }
 }

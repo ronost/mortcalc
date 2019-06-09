@@ -1,8 +1,12 @@
-mortgage-calculator
+<ul>
+    <li>Pris: <input type="text" [(ngModel)]="price" /></li>
+    <li>Handpenning: <input type="text" [(ngModel)]="downPayment" /></li>
+    <li>Driftskostnad: <input type="text" [(ngModel)]="operatingcosts" /></li>
+</ul>
 
-<input type="text" [(ngModel)]="price" />
 <button (click)="calculate()">Räkna</button>
 
-<p>Pris: {{ (mortgage$ | async).mortgage.price }}</p>
-
+<p>Pris: {{ (mortgage$ | async).mortgage.price.value }}</p>
+<p>Handpenning: {{ (mortgage$ | async).mortgage.downPayment.value }}</p>
+<p>Lånebelopp: </p>
 <pre>{{ interestRates$ | async | json }}</pre>

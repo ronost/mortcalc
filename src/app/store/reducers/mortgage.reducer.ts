@@ -1,5 +1,5 @@
 import * as MortgageActions from '../actions/mortgage.actions';
-import { Mortgage } from 'src/app/models/mortgage.model';
+import { Mortgage, Amount } from 'src/app/models/mortgage.model';
 
 export interface MortgageState  {
   mortgage: Mortgage;
@@ -7,21 +7,39 @@ export interface MortgageState  {
 
 export const initialState: MortgageState = {
   mortgage: <Mortgage> {
-    price: 0,
-    downPayment: 0,
-    interestRate: "0.0"
+      price: <Amount> {
+          value: 0, 
+          currency: "SEK"
+      },
+      downPayment: <Amount> {
+          value: 0, 
+          currency: "SEK"
+      },
+      interestRate: "0.0"
   }
 };
  
 export function mortgageReducer(state: MortgageState = initialState, action: MortgageActions.Union) {
-  switch (action.type) {
-    case MortgageActions.ActionTypes.SIMULATE:
-      return {...state,
-        mortgage: action.payload
-      };
- 
-    case MortgageActions.ActionTypes.RESET:
-    default:
-      return {...state};
+    switch (action.type) {
+        case MortgageActions.ActionTypes.UPDATE_PRICE:
+            return {
+                ...state,
+                mortgage: {
+                    ...state.mortgage,
+                    price: action.payload
+                }
+            }; 
+        case MortgageActions.ActionTypes.UPDATE_DOWN_PAYMENT:
+            return {
+                ...state,
+                mortgage: {
+                    ...state.mortgage,
+                    downPayment: action.payload
+                }
+            };
+        default:
+            return {
+                ...state
+            };
     }
 }

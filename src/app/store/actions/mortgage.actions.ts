@@ -1,21 +1,21 @@
 import { Action } from '@ngrx/store';
-import { Mortgage } from 'src/app/models/mortgage.model';
+import { Amount } from 'src/app/models/mortgage.model';
  
 export enum ActionTypes {
-    SIMULATE = '[Mortgage calculator] Simulate',
-    RESET = '[Mortgage calculate] Reset'
+    UPDATE_PRICE = '[Mortgage calculator] Update Price',
+    UPDATE_DOWN_PAYMENT = '[Mortgage calculator] Update Downpayment'
 }
 
-export class SimulateAction implements Action {
-    readonly type = ActionTypes.SIMULATE;
+export class UpdatePriceAction implements Action {
+    readonly type = ActionTypes.UPDATE_PRICE;
 
-    constructor(public payload: Mortgage) { }
+    constructor(public payload: Amount) { }
 }
 
-export class ResetAction implements Action {
-    readonly type = ActionTypes.RESET;
+export class UpdateDownPaymentAction implements Action {
+    readonly type = ActionTypes.UPDATE_DOWN_PAYMENT;
 
-    constructor(public payload: Mortgage) { }
+    constructor(public payload: Amount) { }
 }
 
-export type Union = SimulateAction | ResetAction;
+export type Union = UpdatePriceAction | UpdateDownPaymentAction;

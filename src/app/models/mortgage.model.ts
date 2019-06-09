@@ -1,5 +1,10 @@
 export interface Mortgage {
-    price: number;
-    downPayment: number;
+    price: Amount;
+    downPayment: Amount;
     interestRate: string
+}
+
+export interface Amount {
+    value: number;
+    currency: string;
 }
