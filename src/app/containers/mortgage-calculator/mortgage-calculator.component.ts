@@ -8,6 +8,7 @@ import { MortgageState } from 'src/app/store/reducers/mortgage.reducer';
 
 import { LoadInterestRatesAction } from 'src/app/store/actions/interestrate.actions';
 import { InterestRateState } from 'src/app/store/reducers/interestrates.reducer';
+import { selectDownPaymentValue, selectMortagePriceValue } from 'src/app/store/selectors/mortgage.selectors';
 
 @Component({
   selector: 'mortgage-calculator',
@@ -18,11 +19,13 @@ import { InterestRateState } from 'src/app/store/reducers/interestrates.reducer'
 export class MortgageCalculatorComponent {
     price: number;
     downPayment: number;
-    mortgage$: Observable<MortgageState>;
+    mortgagePriceValue$: Observable<number>;
+    downPaymentValue$: Observable<number>;
     interestRates$: Observable<InterestRateState>;
 
     constructor(private store: Store<ApplicationState>) {
-        this.mortgage$ = store.pipe(select(state => state.mortgage));
+        this.mortgagePriceValue$ = this.store.pipe(select(selectMortagePriceValue));
+        this.downPaymentValue$ = this.store.pipe(select(selectDownPaymentValue));
         this.interestRates$ = store.pipe(select(state => state.interestRates));
     }
 

@@ -1,12 +1,12 @@
 <ul>
-    <li>Pris: <input type="text" [(ngModel)]="price" /></li>
+    <li>Pris: <input type="text" [(ngModel)]="mortgagePriceValue$" /></li>
     <li>Handpenning: <input type="text" [(ngModel)]="downPayment" /></li>
     <li>Driftskostnad: <input type="text" [(ngModel)]="operatingcosts" /></li>
 </ul>
 
 <button (click)="calculate()">Räkna</button>
 
-<p>Pris: {{ (mortgage$ | async).mortgage.price.value }}</p>
-<p>Handpenning: {{ (mortgage$ | async).mortgage.downPayment.value }}</p>
+<p>Pris: {{ mortgagePriceValue$ | async }}</p>
+<p>Handpenning: {{ downPaymentValue$ | async }}</p>
 <p>Lånebelopp: </p>
 <pre>{{ interestRates$ | async | json }}</pre>
