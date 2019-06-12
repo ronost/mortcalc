@@ -14,7 +14,7 @@ export class InterestRatesEffects {
             ofType(InterestRateActions.ActionTypes.LOAD_INTEREST_RATES),
             mergeMap(() => this.restApi.getInterestRates()
             .pipe(
-                map(interestRates => ({ type: InterestRateActions.ActionTypes.LOAD_INTEREST_RATES_SUCCESS, payload: interestRates })),
+                map(interestRates => ({ type: InterestRateActions.ActionTypes.LOAD_INTEREST_RATES_SUCCESS, payload: interestRates.items })),
                 catchError(() => EMPTY)
             ))
         );

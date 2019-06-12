@@ -6,17 +6,21 @@ export interface MortgageState  {
 }
 
 export const initialState: MortgageState = {
-  mortgage: <Mortgage> {
-      price: <Amount> {
-          value: 0, 
-          currency: "SEK"
-      },
-      downPayment: <Amount> {
-          value: 0, 
-          currency: "SEK"
-      },
-      interestRate: "0.0"
-  }
+    mortgage: <Mortgage> {
+        price: <Amount> {
+            value: 0, 
+            currency: "SEK"
+        },
+        downPayment: <Amount> {
+            value: 0, 
+            currency: "SEK"
+        },
+        operatingCosts: <Amount> {
+            value: 0, 
+            currency: "SEK"
+        },
+        interestRate: "0.0"
+    }
 };
  
 export function mortgageReducer(state: MortgageState = initialState, action: MortgageActions.Union) {

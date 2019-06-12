@@ -16,7 +16,7 @@ export class LoadInterestRatesAction implements Action {
 export class LoadInterestRatesSuccessAction implements Action {
     readonly type = ActionTypes.LOAD_INTEREST_RATES_SUCCESS;
 
-    constructor(public payload: Array<InterestRate>) { }
+    constructor(public payload: Array<InterestRate> ) { }
 }
 
 export class LoadInterestRatesErrorAction implements Action {
