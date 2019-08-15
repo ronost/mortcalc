@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { UpdatePriceAction, UpdateDownPaymentAction } from '../../store/actions/mortgage.actions';
+import { UpdatePriceAction, UpdateDownPaymentAction, UpdateOperatingCostAction } from '../../store/actions/mortgage.actions';
 import { Amount } from '../../models/mortgage.model'
 import { ApplicationState } from 'src/app/store/app.state';
 import { MortgageState } from 'src/app/store/reducers/mortgage.reducer';
 
 import { LoadInterestRatesAction } from 'src/app/store/actions/interestrate.actions';
 import { InterestRateState } from 'src/app/store/reducers/interestrates.reducer';
-import { selectDownPaymentValue, selectMortagePriceValue } from 'src/app/store/selectors/mortgage.selectors';
+import { selectDownPaymentValue, selectMortagePriceValue, selectOperatingCostValue } from 'src/app/store/selectors/mortgage.selectors';
 
 @Component({
   selector: 'mortgage-calculator',
@@ -19,13 +19,16 @@ import { selectDownPaymentValue, selectMortagePriceValue } from 'src/app/store/s
 export class MortgageCalculatorComponent {
     price: number;
     downPayment: number;
+    operatingcosts: number;
     mortgagePriceValue$: Observable<number>;
     downPaymentValue$: Observable<number>;
+    operatingcostsValue$: Observable<number>;
     interestRates$: Observable<InterestRateState>;
 
     constructor(private store: Store<ApplicationState>) {
         this.mortgagePriceValue$ = this.store.pipe(select(selectMortagePriceValue));
         this.downPaymentValue$ = this.store.pipe(select(selectDownPaymentValue));
+        this.operatingcostsValue$ = this.store.pipe(select(selectOperatingCostValue));
         this.interestRates$ = store.pipe(select(state => state.interestRates));
     }
 
@@ -36,5 +39,6 @@ export class MortgageCalculatorComponent {
     calculate() {
         this.store.dispatch(new UpdatePriceAction(<Amount> { value: this.price, currency: "SEK" } ));
         this.store.dispatch(new UpdateDownPaymentAction(<Amount> { value: this.downPayment, currency: "SEK" } ));
+        this.store.dispatch(new UpdateOperatingCostAction(<Amount> { value: this.operatingcosts, currency: "SEK" } ));
     }
 }

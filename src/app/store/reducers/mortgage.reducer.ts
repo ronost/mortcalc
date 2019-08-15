@@ -41,6 +41,14 @@ export function mortgageReducer(state: MortgageState = initialState, action: Mor
                     downPayment: action.payload
                 }
             };
+        case MortgageActions.ActionTypes.UPDATE_OPERATING_COST:
+            return {
+                ...state,
+                mortgage: {
+                    ...state.mortgage,
+                    operatingCosts: action.payload
+                }
+            };
         default:
             return {
                 ...state
