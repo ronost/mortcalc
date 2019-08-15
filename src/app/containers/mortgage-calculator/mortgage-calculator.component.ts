@@ -8,7 +8,7 @@ import { MortgageState } from 'src/app/store/reducers/mortgage.reducer';
 
 import { LoadInterestRatesAction } from 'src/app/store/actions/interestrate.actions';
 import { InterestRateState } from 'src/app/store/reducers/interestrates.reducer';
-import { selectDownPaymentValue, selectMortagePriceValue, selectOperatingCostValue } from 'src/app/store/selectors/mortgage.selectors';
+import { selectDownPaymentValue, selectMortagePriceValue, selectOperatingCostValue, calculateLoanAmountValue } from 'src/app/store/selectors/mortgage.selectors';
 
 @Component({
   selector: 'mortgage-calculator',
@@ -24,12 +24,14 @@ export class MortgageCalculatorComponent {
     downPaymentValue$: Observable<number>;
     operatingcostsValue$: Observable<number>;
     interestRates$: Observable<InterestRateState>;
+    loanAmountValue$: Observable<Number>;
 
     constructor(private store: Store<ApplicationState>) {
         this.mortgagePriceValue$ = this.store.pipe(select(selectMortagePriceValue));
         this.downPaymentValue$ = this.store.pipe(select(selectDownPaymentValue));
         this.operatingcostsValue$ = this.store.pipe(select(selectOperatingCostValue));
-        this.interestRates$ = store.pipe(select(state => state.interestRates));
+        this.interestRates$ = this.store.pipe(select(state => state.interestRates));
+        this.loanAmountValue$ = this.store.pipe(select(calculateLoanAmountValue));
     }
 
     ngOnInit() {

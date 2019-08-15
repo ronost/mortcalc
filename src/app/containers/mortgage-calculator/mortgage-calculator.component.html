@@ -9,5 +9,5 @@
 <p>Pris: {{ mortgagePriceValue$ | async }}</p>
 <p>Handpenning: {{ downPaymentValue$ | async }}</p>
 <p>Driftskostnad: {{ operatingcostsValue$ | async }}</p>
-<p>Lånebelopp: </p>
+<p>Lånebelopp: {{ loanAmountValue$ | async }}</p>
 <pre>{{ interestRates$ | async | json }}</pre>
