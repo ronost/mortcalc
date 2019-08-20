@@ -33,8 +33,14 @@
   </mat-expansion-panel>
 </mat-accordion>
 
+<loan-ratio
+  [price]="(mortgagePriceValue$ | async)"
+  [downPayment]="(downPaymentValue$ | async)"
+></loan-ratio>
+<!--
 <p>Pris: {{ mortgagePriceValue$ | async }}</p>
 <p>Handpenning: {{ downPaymentValue$ | async }}</p>
 <p>Driftskostnad: {{ operatingcostsValue$ | async }}</p>
-<p>Lånebelopp: {{ loanAmountValue$ | async }}</p>
+<p>Lånebelopp: {{ loanAmountValue$ || 0 | async }}</p>
 <p>Ränta: {{ (interestRates$ | async).entities[interestRateId].name }}</p>
+-->

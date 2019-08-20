@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MortgageCalculatorComponent } from './containers/mortgage-calculator/mortgage-calculator.component';
+import { LoanRatioComponent } from './components/loan-ratio/loan-ratio.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { ROOT_REDUCER, META_REDUCERS } from './store/app.state';
@@ -19,7 +20,8 @@ import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
-    MortgageCalculatorComponent
+    MortgageCalculatorComponent,
+    LoanRatioComponent
   ],
   imports: [
     BrowserAnimationsModule,

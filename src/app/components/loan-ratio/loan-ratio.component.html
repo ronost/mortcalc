@@ -1,0 +1,6 @@
+<p>Pris: {{ price }}</p>
+<p>Handpenning: {{ downPayment }}</p>
+<p>Belåningsgrad: {{ (downPayment / price * 100) || 0  | number : '0.0-2' }}%</p>
+
+
+<canvas id="loanRatio" width="200" height="100"></canvas>

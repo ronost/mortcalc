@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { UpdatePriceAction, UpdateDownPaymentAction, UpdateOperatingCostAction } from '../../store/actions/mortgage.actions';
 import { Amount } from '../../models/mortgage.model'
 import { ApplicationState } from 'src/app/store/app.state';
-import { MortgageState } from 'src/app/store/reducers/mortgage.reducer';
 
 import { LoadInterestRatesAction } from 'src/app/store/actions/interestrate.actions';
 import { InterestRateState } from 'src/app/store/reducers/interestrates.reducer';
