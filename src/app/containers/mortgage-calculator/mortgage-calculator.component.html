@@ -1,13 +1,40 @@
-<ul>
-    <li>Pris: <input type="text" [(ngModel)]="price" /></li>
-    <li>Handpenning: <input type="text" [(ngModel)]="downPayment" /></li>
-    <li>Driftskostnad: <input type="text" [(ngModel)]="operatingcosts" /></li>
-</ul>
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel [expanded]="calculationOpen" (opened)="setCalculationOpen()" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Bolånekalkyl
+      </mat-panel-title>
+    </mat-expansion-panel-header>
 
-<button (click)="calculate()">Räkna</button>
+    <mat-form-field>
+      <input [(ngModel)]="price" matInput type="number" min="1000000" placeholder="Bostadens pris">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input [(ngModel)]="downPayment" matInput type="number" placeholder="Handpenning">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input [(ngModel)]="operatingcosts" matInput type="number" placeholder="Driftskostnad">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ränta</mat-label>
+      <mat-select [(ngModel)]="interestRateId">
+        <mat-option *ngFor="let rate of (interestRates$ | async).entities | keyvalue" [value]="rate.value.id">
+          {{ rate.value.name }} ({{rate.value.interestRate}}%)
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="calculate()">Räkna</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
 
 <p>Pris: {{ mortgagePriceValue$ | async }}</p>
 <p>Handpenning: {{ downPaymentValue$ | async }}</p>
 <p>Driftskostnad: {{ operatingcostsValue$ | async }}</p>
 <p>Lånebelopp: {{ loanAmountValue$ | async }}</p>
-<pre>{{ interestRates$ | async | json }}</pre>
+<p>Ränta: {{ (interestRates$ | async).entities[interestRateId].name }}</p>

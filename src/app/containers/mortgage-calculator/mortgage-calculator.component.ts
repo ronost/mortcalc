@@ -17,9 +17,11 @@ import { selectDownPaymentValue, selectMortagePriceValue, selectOperatingCostVal
 })
 
 export class MortgageCalculatorComponent {
+    calculationOpen: boolean = true;
     price: number;
     downPayment: number;
     operatingcosts: number;
+    interestRateId: number = 0;
     mortgagePriceValue$: Observable<number>;
     downPaymentValue$: Observable<number>;
     operatingcostsValue$: Observable<number>;
@@ -39,8 +41,13 @@ export class MortgageCalculatorComponent {
     }
  
     calculate() {
+        this.calculationOpen = false;
         this.store.dispatch(new UpdatePriceAction(<Amount> { value: this.price, currency: "SEK" } ));
         this.store.dispatch(new UpdateDownPaymentAction(<Amount> { value: this.downPayment, currency: "SEK" } ));
         this.store.dispatch(new UpdateOperatingCostAction(<Amount> { value: this.operatingcosts, currency: "SEK" } ));
+    }
+
+    setCalculationOpen() {
+      this.calculationOpen = true;
     }
 }

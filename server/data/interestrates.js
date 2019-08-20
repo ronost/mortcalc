@@ -29,5 +29,10 @@ module.exports = [
         name: "8 år bunden",
         period: "96",
         interestRate: "3.28"
+    }, {
+        id: 6,
+        name: "20 år bunden",
+        period: "240",
+        interestRate: "-0.5"
     }
 ];
