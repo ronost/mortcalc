@@ -35,7 +35,9 @@
 
 <loan-ratio
   [price]="(mortgagePriceValue$ | async)"
+  (priceChange)="updatePrice($event)"
   [downPayment]="(downPaymentValue$ | async)"
+  (downPaymentChange)="updateDownPayment($event)"
 ></loan-ratio>
 <!--
 <p>Pris: {{ mortgagePriceValue$ | async }}</p>

@@ -1,6 +1,53 @@
-<p>Pris: {{ price }}</p>
-<p>Handpenning: {{ downPayment }}</p>
-<p>Belåningsgrad: {{ (downPayment / price * 100) || 0  | number : '0.0-2' }}%</p>
+<div class="loanOverviewContainer" [hidden]="!loanRatio">
+    <h1>Lånebild</h1>
+    <h3>Pris: </h3>
+    <p>
+        <button mat-icon-button color="primary" aria-label="Increment" (click)="decrementPrice()">
+            <mat-icon>remove_circle</mat-icon>
+        </button>
+        {{ price }}
+        <button mat-icon-button color="primary" aria-label="Increment" (click)="incrementPrice()">
+            <mat-icon>add_circle</mat-icon>
+        </button>
+    </p>
 
+    <h3>Handpenning: </h3>
+    <p>
+        <button mat-icon-button color="primary" aria-label="Increment" (click)="decrementDownPayment()">
+            <mat-icon>remove_circle</mat-icon>
+        </button>
+        {{ downPayment }}
+        <button mat-icon-button color="primary" aria-label="Increment" (click)="incrementDownPayment()">
+            <mat-icon>add_circle</mat-icon>
+        </button>
+    </p>
 
-<canvas id="loanRatio" width="200" height="100"></canvas>
+    <hr />
+    
+    <h3>Belåningsgrad</h3>
+    <p>{{ loanRatio || 0  | number : '0.0-2' }}%</p>
+
+    <div class="houseContainer">
+        <canvas id="h20" width="300" height="5"></canvas>
+        <canvas id="h19" width="300" height="5"></canvas>
+        <canvas id="h18" width="300" height="5"></canvas>
+        <canvas id="h17" width="300" height="5"></canvas>
+        <canvas id="h16" width="300" height="5"></canvas>
+        <canvas id="h15" width="300" height="5"></canvas>
+        <canvas id="h14" width="300" height="5"></canvas>
+        <canvas id="h13" width="300" height="5"></canvas>
+        <canvas id="h12" width="300" height="5"></canvas>
+        <canvas id="h11" width="300" height="5"></canvas>
+        <canvas id="h10" width="300" height="5"></canvas>
+        <canvas id="h9" width="300" height="5"></canvas>
+        <canvas id="h8" width="300" height="5"></canvas>
+        <canvas id="h7" width="300" height="5"></canvas>
+        <canvas id="h6" width="300" height="5"></canvas>
+        <canvas id="h5" width="300" height="5"></canvas>
+        <canvas id="h4" width="300" height="5"></canvas>
+        <canvas id="h3" width="300" height="5"></canvas>
+        <canvas id="h2" width="300" height="5"></canvas>
+        <canvas id="h1" width="300" height="5"></canvas>
+        <canvas id="door" width="40" height="60" style="position: absolute; left: 65px; top: 95px; z-index: 100;"></canvas>
+    </div>
+</div>

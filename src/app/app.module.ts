@@ -16,6 +16,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule, MatIcon } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
+    MatIconModule,
     ReactiveFormsModule,
     StoreModule.forRoot(ROOT_REDUCER, { metaReducers: META_REDUCERS }), 
     StoreDevtoolsModule.instrument({ maxAge: 25 })

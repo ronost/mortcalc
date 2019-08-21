@@ -1,0 +1,21 @@
+.loanOverviewContainer {
+    margin-left: 20px;
+    width:50%;
+}
+.loanOverviewContainer h3, p {
+    margin: 0;
+}
+
+.houseContainer {
+    position: relative;
+    float: left;
+    width: 300px;
+    display: block;
+    overflow: hidden;
+}
+
+.houseContainer canvas {
+    display: block;
+    overflow: hidden;
+    margin-top: 3px;
+}

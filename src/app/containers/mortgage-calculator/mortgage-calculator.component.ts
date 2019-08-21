@@ -46,6 +46,16 @@ export class MortgageCalculatorComponent {
         this.store.dispatch(new UpdateOperatingCostAction(<Amount> { value: this.operatingcosts, currency: "SEK" } ));
     }
 
+    updatePrice(event) {
+        this.price = event;
+        this.store.dispatch(new UpdatePriceAction(<Amount> { value: this.price, currency: "SEK" } ));
+    }
+
+    updateDownPayment(event) {
+        this.downPayment = event;
+        this.store.dispatch(new UpdateDownPaymentAction(<Amount> { value: this.downPayment, currency: "SEK" } ));
+    }
+
     setCalculationOpen() {
       this.calculationOpen = true;
     }

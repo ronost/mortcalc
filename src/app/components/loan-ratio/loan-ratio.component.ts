@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
 
 @Component({
     selector: 'loan-ratio',
@@ -6,53 +6,145 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
     styleUrls: ['./loan-ratio.component.css']
   })
 
-export class LoanRatioComponent implements OnInit {
-    loanRatioCanvas: HTMLCanvasElement;
-    loanRatioCanvasContext: CanvasRenderingContext2D;
+export class LoanRatioComponent implements OnInit, OnChanges {
+    loanRatioCanvasCtx: Array<CanvasRenderingContext2D> = [];
+    loanRatioCanvasDoorCtx: CanvasRenderingContext2D;
+    loanRatio: number = 0;
+    priceStep: number = 10000;
+    downPaymentStep: number = 10000;
+
     @Input() price: number;
     @Output() priceChange = new EventEmitter<number>();
     @Input() downPayment: number;
     @Output() downPaymentChange = new EventEmitter<number>();
 
     ngOnInit() {
-        this.loanRatioCanvas = <HTMLCanvasElement> document.getElementById("loanRatio");
-        this.loanRatioCanvasContext = this.loanRatioCanvas.getContext("2d");
+        for(let i = 1; i<=20; i++) {
+            let elem = <HTMLCanvasElement> document.getElementById("h" + i);
+            this.loanRatioCanvasCtx[i] = elem.getContext("2d");
+        }
 
+        this.loanRatioCanvasDoorCtx = (<HTMLCanvasElement> document.getElementById("door")).getContext("2d");
+    }
+
+    ngOnChanges() {
+        this.loanRatio = (1 - (this.downPayment / this.price)) * 100;
         this.drawHouse();
     }
 
+    incrementPrice() {
+        this.priceChange.emit(this.price + this.priceStep);
+    }
+
+    decrementPrice() {
+        if ((this.price - this.priceStep) < 0) {
+            this.priceChange.emit(0);
+        }
+        else {
+            this.priceChange.emit(this.price - this.priceStep);
+        }
+    }
+
+    incrementDownPayment() {
+        this.downPaymentChange.emit(this.downPayment + this.downPaymentStep);
+    }
+
+    decrementDownPayment() {
+        if ((this.downPayment - this.downPaymentStep) < 0) {
+            this.downPaymentChange.emit(0);
+        } else {
+            this.downPaymentChange.emit(this.downPayment - this.downPaymentStep);
+        }
+    }
+
     drawHouse() {
-        this.loanRatioCanvasContext.fillStyle = "#FF0000";
-        this.loanRatioCanvasContext.fillRect(12.5,30,175,70);
+        if (this.loanRatioCanvasDoorCtx) {
+            this.loanRatioCanvasDoorCtx.fillStyle = "#FFFFFF";
+            this.loanRatioCanvasDoorCtx.fillRect(0, 0, 100, 100);
+        }
+        this.loanRatioCanvasCtx.forEach((ctx, idx) => {
+            //Clear
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fill();
 
-        // Draw triangle
-        this.loanRatioCanvasContext.fillStyle="#000000";
-        this.loanRatioCanvasContext.beginPath();
-        this.loanRatioCanvasContext.moveTo(12.5,30);
-        this.loanRatioCanvasContext.lineTo(185,30);
-        this.loanRatioCanvasContext.lineTo(99,0);
-        this.loanRatioCanvasContext.closePath();
-        this.loanRatioCanvasContext.fill();
+            ctx.beginPath();
+            if(idx == 20) {
+                ctx.strokeStyle = "#000000";
+                ctx.fillStyle = "#ff0000";
+                ctx.moveTo(125, 5);
+                ctx.lineTo(175, 5);
+                ctx.lineTo(150, 0);
+                ctx.lineTo(125, 5);
+            }
+            else if(idx == 19) {
+                ctx.strokeStyle = "#000000";
+                ctx.fillStyle = "#ff0000";
+                ctx.moveTo(100, 5);
+                ctx.lineTo(200, 5);
+                ctx.lineTo(175, 0);
+                ctx.lineTo(125, 0);
+                ctx.lineTo(100, 5);
+            }
+            else if(idx == 18) {
+                ctx.strokeStyle = "#000000";
+                ctx.fillStyle = "#ff0000";
+                ctx.moveTo(75, 5);
+                ctx.lineTo(225, 5);
+                ctx.lineTo(210, 0);
+                ctx.lineTo(100, 0);
+                ctx.lineTo(75, 5);
+            }
+            else if(idx == 17) {
+                ctx.strokeStyle = "#000000";
+                ctx.fillStyle = "#ff0000";
+                ctx.moveTo(50, 5);
+                ctx.lineTo(250, 5);
+                ctx.lineTo(230, 0);
+                ctx.lineTo(75, 0);
+                ctx.lineTo(50, 5);
+            }
+            else if(idx == 16) {
+                ctx.strokeStyle = "#000000";
+                ctx.fillStyle = "#ff7f00";
+                ctx.moveTo(25, 5);
+                ctx.lineTo(275, 5);
+                ctx.lineTo(255, 0);
+                ctx.lineTo(50, 0);
+                ctx.lineTo(25, 5);
+            }
+            else if(idx == 15) {
+                ctx.strokeStyle = "#000000";
+                ctx.fillStyle = "#ff7f00";
+                ctx.moveTo(0, 5);
+                ctx.lineTo(300, 5);
+                ctx.lineTo(280, 0);
+                ctx.lineTo(25, 0);
+                ctx.lineTo(0, 5);
+            }
+            else if (idx >= 10 && idx <= 14) {
+                ctx.strokeStyle = "#000000";
+                ctx.fillStyle = "#feff00";
+                ctx.moveTo(40, 0);
+                ctx.lineTo(260, 0);
+                ctx.lineTo(260, 5);
+                ctx.lineTo(40, 5);
+                ctx.lineTo(40, 0);
+            }
+            else if (idx < 10) {
+                ctx.strokeStyle = "#000000";
+                ctx.fillStyle = "#00ff00";
+                ctx.moveTo(40, 0);
+                ctx.lineTo(260, 0);
+                ctx.lineTo(260, 5);
+                ctx.lineTo(40, 5);
+                ctx.lineTo(40, 0);
+            }
+            ctx.stroke();
 
-        //windows
-        this.loanRatioCanvasContext.fillStyle="#663300";
-        this.loanRatioCanvasContext.fillRect(25,40,35,50);
-        this.loanRatioCanvasContext.fillStyle="#0000FF";
-        this.loanRatioCanvasContext.fillRect(27,42,13,23);
-        this.loanRatioCanvasContext.fillRect(43,42,13,23);
-        this.loanRatioCanvasContext.fillRect(43,67,13,21);
-        this.loanRatioCanvasContext.fillRect(27,67,13,21);
-
-        //door
-        this.loanRatioCanvasContext.fillStyle = "#754719";
-        this.loanRatioCanvasContext.fillRect(80,53,30,100);
-
-        //door knob
-        this.loanRatioCanvasContext.beginPath();
-        this.loanRatioCanvasContext.fillStyle = "#F2F2F2";
-        this.loanRatioCanvasContext.arc(105,75,3,0,2*Math.PI);
-        this.loanRatioCanvasContext.fill();
-        this.loanRatioCanvasContext.closePath();
+            if(((idx / 20) * 100) <= this.loanRatio) {
+                ctx.fill();
+            }
+        });
     }
 }
 
