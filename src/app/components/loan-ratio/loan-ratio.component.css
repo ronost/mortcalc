@@ -19,3 +19,10 @@
     overflow: hidden;
     margin-top: 3px;
 }
+
+.houseContainer .door {
+    position: absolute; 
+    left: 65px; 
+    top: 95px; 
+    z-index: 100;
+}
