@@ -1,6 +1,8 @@
 .loanOverviewContainer {
-    margin-left: 20px;
-    width:50%;
+    float: left;
+    padding: 10px;
+    border: 1px dotted #000000;
+    margin-top: 10px;
 }
 .loanOverviewContainer h3, p {
     margin: 0;

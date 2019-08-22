@@ -1,0 +1,50 @@
+<div class="runningCostsContainer" [hidden]="!operatingCosts">
+    <h1>Löpande kostnader</h1>
+    <h3>Driftskostnad: </h3>
+    <p>
+        <button mat-icon-button color="primary" aria-label="Increment" (click)="decrementOperatingCosts()">
+            <mat-icon>remove_circle</mat-icon>
+        </button>
+        {{ operatingCosts }}
+        <button mat-icon-button color="primary" aria-label="Increment" (click)="incrementOperatingCosts()">
+            <mat-icon>add_circle</mat-icon>
+        </button>
+    </p>
+
+    <h3>Ränta: </h3>
+    <mat-form-field>
+        <mat-select [(ngModel)]="interestRateId" (selectionChange)="updateInterestRateId($event)">
+            <mat-option *ngFor="let rate of interestRates | keyvalue" [value]="rate.value.id">
+                {{ rate.value.name }} ({{rate.value.interestRate}}%)
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="costsTable" class="mat-elevation-z8">
+        
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Ränta </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="operatingCosts">
+            <th mat-header-cell *matHeaderCellDef> Driftskostnad </th>
+            <td mat-cell *matCellDef="let element"> {{element.operatingCosts | number : '0.0-2' }} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="amortisation">
+            <th mat-header-cell *matHeaderCellDef> Amortering </th>
+            <td mat-cell *matCellDef="let element"> {{element.amortisation | number : '0.0-2' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="monthlyCost">
+                <th mat-header-cell *matHeaderCellDef> Månadskostnad </th>
+                <td mat-cell *matCellDef="let element"> {{element.monthlyCost | number : '0.0-2' }} </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+        [ngClass]="{'highlight': row.position == interestRateId}"></tr>
+    </table>
+
+</div>    

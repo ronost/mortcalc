@@ -1,0 +1,24 @@
+.runningCostsContainer {
+    float: left;
+    padding: 10px;
+    border: 1px dotted #000000;
+    margin: 10px 0px 0px 10px;
+}
+.runningCostsContainer h3, p {
+    margin: 0;
+}
+
+table {
+    width: 100%;
+}
+
+th, td {
+    min-width: 100px;
+}
+
+.highlight {
+    background-color: #673AB7;
+}
+.highlight td {
+    color: #FFFFFF;
+}

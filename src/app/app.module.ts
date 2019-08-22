@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MortgageCalculatorComponent } from './containers/mortgage-calculator/mortgage-calculator.component';
 import { LoanRatioComponent } from './components/loan-ratio/loan-ratio.component';
+import { RunningCostsComponent } from './components/running-costs/running-costs.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { ROOT_REDUCER, META_REDUCERS } from './store/app.state';
@@ -16,13 +17,15 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule, MatIcon } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
     AppComponent,
     MortgageCalculatorComponent,
-    LoanRatioComponent
+    LoanRatioComponent,
+    RunningCostsComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -36,6 +39,7 @@ import { MatIconModule, MatIcon } from '@angular/material/icon';
     MatButtonModule,
     MatSelectModule,
     MatIconModule,
+    MatTableModule,
     ReactiveFormsModule,
     StoreModule.forRoot(ROOT_REDUCER, { metaReducers: META_REDUCERS }), 
     StoreDevtoolsModule.instrument({ maxAge: 25 })
