@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { InterestRate } from 'src/app/models/interestrate.model';
  
 export enum ActionTypes {
-    LOAD_INTEREST_RATES = '[Inerest rate] Load rates',
+    LOAD_INTEREST_RATES = '[Interest rate] Load rates',
     LOAD_INTEREST_RATES_SUCCESS = '[Interest rate] Load rates success',
     LOAD_INTEREST_RATES_ERROR = '[Interest rate] Load rates errors'
 }

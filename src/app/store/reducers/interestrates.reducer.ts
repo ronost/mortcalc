@@ -15,7 +15,9 @@ export function interestRateReducer(state: InterestRateState = initialState, act
     switch (action.type) {
         case InterestRateActions.ActionTypes.LOAD_INTEREST_RATES_SUCCESS:
             const interestRateEntities = action.payload.reduce((entities, interestRate) => {
-                    return { ...entities, [interestRate.id]: interestRate };
+                return {
+                    ...entities, [interestRate.id]: interestRate
+                };
                 }, {
                     ...state.entities
                 }
@@ -29,6 +31,8 @@ export function interestRateReducer(state: InterestRateState = initialState, act
         case InterestRateActions.ActionTypes.LOAD_INTEREST_RATES_ERROR:
         default:
             // Not yet impl
-            return {...state};
+            return {
+                ...state
+            };
         }
 }

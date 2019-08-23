@@ -39,10 +39,10 @@ export class RunningCostsComponent implements OnInit, OnChanges {
       Object.values(this.interestRates).forEach(interestRate => {
           this.costsTable.push({
               position: interestRate.id,
-              name: interestRate.interestRate + " %",
+              name: interestRate.interestRate,
               operatingCosts: this.operatingCosts,
               amortisation: amortisationValuePerMonth,
-              monthlyCost: this.operatingCosts + ((this.price * (interestRate.interestRate / 100)) / 12) 
+              monthlyCost: this.operatingCosts + ((this.price * (interestRate.interestRate / 100)) / 12)
           })
       });
     }
